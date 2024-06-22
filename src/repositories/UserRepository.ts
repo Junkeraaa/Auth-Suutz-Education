@@ -3,6 +3,11 @@ import { User } from '../models/User';
 
 class UserRepository {
   async createUser(user: User): Promise<number> {
+    const existingUser = await this.findByEmail(user.email);
+    if (existingUser) {
+      throw new Error('User with this email already exists');
+    }
+
     const [result] = await pool.query(
       'INSERT INTO users (email, password, role) VALUES (?, ?, ?)',
       [user.email, user.password, user.role]
