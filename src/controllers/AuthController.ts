@@ -4,8 +4,8 @@ import authService from '../services/AuthService';
 class AuthController {
   async register(req: Request, res: Response): Promise<void> {
     try {
-      const { email, password, role } = req.body;
-      const token = await authService.register(email, password, role);
+      const { email, password, role, classId } = req.body;
+      const token = await authService.register(email, password, role, classId);
       res.status(201).json({ token });
     } catch (error: any) {
       if (error.message === 'User with this email already exists') {

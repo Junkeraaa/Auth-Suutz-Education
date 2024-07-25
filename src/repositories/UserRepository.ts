@@ -3,10 +3,6 @@ import { User } from '../models/User';
 
 class UserRepository {
   async createUser(user: User): Promise<number> {
-    const existingUser = await this.findByEmail(user.email);
-    if (existingUser) {
-      throw new Error('User with this email already exists');
-    }
 
     const [result] = await pool.query(
       'INSERT INTO users (email, password, role) VALUES (?, ?, ?)',
@@ -15,8 +11,16 @@ class UserRepository {
     return (result as any).insertId;
   }
 
-  async findByEmail(email: string): Promise<User | null> {
+  async findUserByEmail(email: string): Promise<User | null> {
     const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+    if ((rows as User[]).length) {
+      return (rows as User[])[0];
+    }
+    return null;
+  }
+
+  async findUserById(userId : number): Promise<User | null> {
+    const [rows] = await pool.query('SELECT * FROM users WHERE id = ?', [userId]);
     if ((rows as User[]).length) {
       return (rows as User[])[0];
     }
