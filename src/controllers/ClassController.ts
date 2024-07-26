@@ -15,6 +15,20 @@ class ClassController {
             }
         }
     }
+
+    async insertInClass(req: Request, res: Response): Promise<void> {
+        try {
+            const { classroomId, customerid } = req.body;
+            const classMemberId = await classService.joinInClass(customerid, classroomId);
+            res.status(201).json({ classMemberId });
+        } catch (error: any) { 
+            if (error.message === 'msg de error') {
+                res.status(406).json({ message: error.message });
+            } else {
+                res.status(400).json({ message: error.message });
+            }
+        }
+    }
 }
 
 export default new ClassController();
