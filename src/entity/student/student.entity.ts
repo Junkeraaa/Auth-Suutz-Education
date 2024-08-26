@@ -1,8 +1,9 @@
 import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import Classroom from "../classroom/classroom.entity";
+import { IRole } from "../../common/interfaces";
 
 @Entity()
-export class Student extends BaseEntity {
+export class Student extends BaseEntity{
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -15,11 +16,11 @@ export class Student extends BaseEntity {
     @Column('varchar', { length: '250' })
     password: string;
 
-    @ManyToMany(() => Classroom)
+    @ManyToMany(() => Classroom, (classroom) => classroom.students)
     @JoinTable()
     classrooms: Classroom[];
 
     // Replace hard coded 'STUDENT' with ENUM;
     @Column('varchar', { default: 'STUDENT', length: '250' })
-    role: string = 'STUDENT';
+    role: keyof IRole;
 }

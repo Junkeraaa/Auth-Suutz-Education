@@ -4,17 +4,15 @@ const dataSource = new DataSource({
     type: "mysql",
     host: "localhost",
     port: 3306,
-    username: "test",
-    password: "test",
-    database: "test",
-})
+    username: "root",
+    password: "12345",
+    database: "Sivt",
+    entities: [`src/entity/**/*.ts`],
+    migrations: ['src/migrations/**/*.ts'],
+    
+});
 
-dataSource.initialize()
-    .then(() => {
-        console.log("Data Source has been initialized!")
-    })
-    .catch((err) => {
-        console.error("Error during Data Source initialization", err)
-    })
+dataSource.initialize().then(() => 'CONNECTECT').catch(e => console.log(e));
+
 
 export default dataSource;
