@@ -1,0 +1,255 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "APIS",
+    "collectionId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+    "dateExported": "2024-09-02T19:48:03.197Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "35839d55-8c11-4803-a1c1-6e4d850ab481",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "createLesson",
+            "url": "localhost:3000/api/classroom/b756a185-635b-477c-9a81-e47b0c3ffc58/createLesson",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-09-02T19:47:08.027Z",
+            "modified": "2024-09-02T19:47:08.027Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwM2E2OWE1LWExZGUtNGQ2My04NzNjLTc5ZmY5MzI0YWU2MyIsImVtYWlsIjoiVGVhY2hlcjEiLCJyb2xlIjoiVEVBQ0hFUiIsImlhdCI6MTcyNTIzODg0MywiZXhwIjoxNzI1MjQyNDQzfQ.IMRjZVQLMl2Mn2RKCNo5litxB3me2ihvNW8jXrLry2M"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"LIÇÃO TOPZERA FODA\",\n  \"descricao\": \"UMA OTIMA LIÇÃO PRA OS DESAVISADOS\",\n  \"content\": [{\n    \"fileUrl\": \"https://orkhan.gitbook.io/typeorm/docs\"\n  }]\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "8e092330-c4ea-4208-840a-47b2e6463f30",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "exitClassroom",
+            "url": "localhost:3000/api/student/03de9e28-59bc-46a4-ab96-827289501a17/exitClassroom/b756a185-635b-477c-9a81-e47b0c3ffc58",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-09-02T19:47:17.206Z",
+            "modified": "2024-09-02T19:47:17.206Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwM2E2OWE1LWExZGUtNGQ2My04NzNjLTc5ZmY5MzI0YWU2MyIsImVtYWlsIjoiVGVhY2hlcjEiLCJyb2xlIjoiVEVBQ0hFUiIsImlhdCI6MTcyNTIzNjE1MSwiZXhwIjoxNzI1MjM5NzUxfQ.LETJtLWa95fL0IH52GPfIFB1BGIesqRXQ8D4XjSI9o4"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"LIÇÃO TOPZERA FODA\",\n  \"descricao\": \"UMA OTIMA LIÇÃO PRA OS DESAVISADOS\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "b28a393b-9745-47a5-a73b-a18879371421",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "enterClassrom",
+            "url": "localhost:3000/api/student/03de9e28-59bc-46a4-ab96-827289501a17/enterClassroom/b756a185-635b-477c-9a81-e47b0c3ffc58",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-09-02T19:47:23.120Z",
+            "modified": "2024-09-02T19:47:23.120Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAzZGU5ZTI4LTU5YmMtNDZhNC1hYjk2LTgyNzI4OTUwMWExNyIsImVtYWlsIjoidGVzdGVAdGVzdGUuY29tIiwicm9sZSI6IlNUVURFTlQiLCJpYXQiOjE3MjUyMzUxMTUsImV4cCI6MTcyNTIzODcxNX0.Nm4uIlx2T22FnV8eS98-XFH4GrnyRYLIup9XRrL3jpM"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"LIÇÃO TOPZERA FODA\",\n  \"descricao\": \"UMA OTIMA LIÇÃO PRA OS DESAVISADOS\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "c96d6120-baaa-47b3-abe5-9f66dc641bae",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "createClassroom",
+            "url": "localhost:3000/api/classroom/createClassroom",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-09-02T19:47:27.602Z",
+            "modified": "2024-09-02T19:47:27.602Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwM2E2OWE1LWExZGUtNGQ2My04NzNjLTc5ZmY5MzI0YWU2MyIsImVtYWlsIjoiVGVhY2hlcjEiLCJyb2xlIjoiVEVBQ0hFUiIsImlhdCI6MTcyNTIzNjkxMywiZXhwIjoxNzI1MjQwNTEzfQ.l86EGIvLz1Va2FYEJSTcVKKbBEAdvYikef8XhHNJkIw"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"NOME FODA 2.0 SUPER FODA\",\n  \"teacherId\": \"f03a69a5-a1de-4d63-873c-79ff9324ae63\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "2dbace26-cd5a-4b18-adf4-3a3a0a5f9f8a",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "deleteClassroom",
+            "url": "localhost:3000/api/classroom/4d495687-015a-445b-aae4-e0d7a6728f28/deleteClassroom",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-09-02T19:47:31.225Z",
+            "modified": "2024-09-02T19:47:31.225Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwM2E2OWE1LWExZGUtNGQ2My04NzNjLTc5ZmY5MzI0YWU2MyIsImVtYWlsIjoiVGVhY2hlcjEiLCJyb2xlIjoiVEVBQ0hFUiIsImlhdCI6MTcyNTIzNjE1MSwiZXhwIjoxNzI1MjM5NzUxfQ.LETJtLWa95fL0IH52GPfIFB1BGIesqRXQ8D4XjSI9o4"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"LIÇÃO TOPZERA FODA\",\n  \"descricao\": \"UMA OTIMA LIÇÃO PRA OS DESAVISADOS\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "4c63abfa-ebab-4089-9a01-5e95b58861ca",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "listLessons",
+            "url": "localhost:3000/api/classroom/4d495687-015a-445b-aae4-e0d7a6728f28/listLesson",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-09-02T19:47:35.243Z",
+            "modified": "2024-09-02T19:47:35.243Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMxNjNiY2RiLTA5MWQtNDYwMy1iNTA2LWUyNTdiOWM0YWQzNyIsImVtYWlsIjoidGVzdGVAdGVzdGUuY29tIiwicm9sZSI6IlNUVURFTlQiLCJpYXQiOjE3MjUyMzI4NTgsImV4cCI6MTcyNTIzNjQ1OH0.q2fK-g4pns78LqRq2byegW0MV9P5Xaqt9VOV9bpZZEI"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"LIÇÃO TOPZERA FODA\",\n  \"descricao\": \"UMA OTIMA LIÇÃO PRA OS DESAVISADOS\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "cefd9e5e-97c7-430b-89d5-54af540acd22",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "registerStudent",
+            "url": "localhost:3000/api/auth/registerStudent",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-09-02T19:47:38.307Z",
+            "modified": "2024-09-02T19:47:38.307Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"teste@teste.com\",\n  \"name\": \"Gustavo Vieira\",\n  \"password\": \"12345\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "607e2732-4679-4ab5-8743-960f5908631f",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "listClassroom",
+            "url": "localhost:3000/api/classroom/listClassroom",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2024-09-02T19:47:41.898Z",
+            "modified": "2024-09-02T19:47:41.898Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMxNjNiY2RiLTA5MWQtNDYwMy1iNTA2LWUyNTdiOWM0YWQzNyIsImVtYWlsIjoidGVzdGVAdGVzdGUuY29tIiwicm9sZSI6IlNUVURFTlQiLCJpYXQiOjE3MjUyMzMwNjcsImV4cCI6MTcyNTIzNjY2N30.WdgJsvUMiitaCXze6GtfKmouZ3mkjOdbqxepah_hRXY"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"CLASSE FODA\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "a693dc19-d0a7-4e75-abc5-851ade8eb8b2",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "loginAsStudent",
+            "url": "localhost:3000/api/auth/loginAsStudent",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2024-09-02T19:47:47.241Z",
+            "modified": "2024-09-02T19:47:47.241Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"teste@teste.com\",\n  \"password\": \"12345\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "9c5febfb-1317-48c5-8601-a8b362261ecf",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "updateClassroom",
+            "url": "localhost:3000/api/classroom/updateClassroom/3ec4c8df-778d-4f41-ae7a-d4890349ea35",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-09-02T19:47:50.460Z",
+            "modified": "2024-09-02T19:47:50.460Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMzNjdkYmY3LTVhZTQtNGNkZC1hZjBjLWFmYWQ3ZTJmMTY2NSIsImVtYWlsIjoidGVzdGVEb2lzIiwicm9sZSI6IlNUVURFTlQiLCJpYXQiOjE3MjUyMjU0MTEsImV4cCI6MTcyNTIyOTAxMX0.zrRiZBUsxv-tut3veV10iy9EtAdjzhmQ1jJRn8N8CGs"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"CLASSE FODA\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "ba5bb336-f91d-4882-90b8-62cfe36eefbd",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "loginAsTeacher",
+            "url": "localhost:3000/api/auth/loginAsTeacher",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2024-09-02T19:47:53.652Z",
+            "modified": "2024-09-02T19:47:53.652Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"Teacher1\",\n  \"password\": \"12345\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "90c4a8bf-dcc6-4a8b-b24a-0e5638e18fb2",
+            "colId": "dc093560-e0af-4e69-bcd6-357a79e5b36d",
+            "containerId": "",
+            "name": "registerTeacher",
+            "url": "localhost:3000/api/auth/registerTeacher",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2024-09-02T19:47:57.370Z",
+            "modified": "2024-09-02T19:47:57.370Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"Teacher1\",\n  \"name\": \"TeacherFoda\",\n  \"password\": \"12345\",\n  \"cpf\": \"validaCpfg\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "ermzArIaY_i0_Z3ShDZWjHs1oAUHRBUDLgzrRXPZHHUlECwXQK86GyFJQq2XfnfDuJowLoYsxbbxoCqo5FMVbQ"
+}

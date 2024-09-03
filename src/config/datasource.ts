@@ -5,7 +5,7 @@ const dataSource = new DataSource({
     host: "localhost",
     port: 3306,
     username: "root",
-    password: "12345",
+    password: "Db3264128jn!",
     database: "Sivt",
     entities: [`src/entity/**/*.ts`],
     migrations: ['src/migrations/**/*.ts'],

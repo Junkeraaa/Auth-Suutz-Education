@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import AccountRoutes from './routes/account.routes';
 import ClassroomRoutes from './routes/classroom.routes';
 import StudentRoutes from './routes/student.routes';
@@ -6,6 +7,7 @@ import StudentRoutes from './routes/student.routes';
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 
