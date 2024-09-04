@@ -4,8 +4,14 @@ import classService from '../services/ClassService';
 class ClassController { 
     async createClass(req: Request, res: Response): Promise<void> {
         try {
-            const { teacherId, className } = req.body;
-            const classId = await classService.createClass(teacherId, className);
+
+            const { user } = req as any;
+            if(user.role !== 'professor'){
+                res.status(403).json({ message: 'Access denied: only professors can create classes' });
+                return;
+            }
+            const { className } = req.body;
+            const classId = await classService.createClass(user.id, className);
             res.status(201).json({ classId });
         } catch (error: any) { 
             if (error.message === 'Only teachers can create classrooms') {
@@ -22,7 +28,7 @@ class ClassController {
             const classMemberId = await classService.joinInClass(customerid, classroomId);
             res.status(201).json({ classMemberId });
         } catch (error: any) { 
-            if (error.message === 'msg de error') {
+            if (error.message === 'msg de error dbaqibd') {
                 res.status(406).json({ message: error.message });
             } else {
                 res.status(400).json({ message: error.message });

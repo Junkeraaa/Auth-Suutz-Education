@@ -5,6 +5,7 @@ import { jwtSecret } from '../config/config';
 export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   const token = req.headers['authorization']?.split(' ')[1];
   if (!token) {
+    console.log('vai brazil')
     res.status(401).json({ message: 'Access denied' });
     return; 
   }

@@ -16,7 +16,7 @@ class AuthService {
     const hashedPassword = await bcrypt.hash(password, 10);
     const customerId = await CustomerRepository.createCustomer({ email, password: hashedPassword, name });
     await ClassroomMemberRepository.insertInClass({classId: 1, customerId: customerId});
-    return this.generateToken({ id: customerId, email, name });
+    return this.generateToken({ id: customerId, email, name, role: "aluno" });
   }
 
   async loginCustomer(email: string, password: string): Promise<string> {
@@ -35,7 +35,7 @@ class AuthService {
     const hashedPassword = await bcrypt.hash(password, 10);
     const  teacherId = await TeacherRepository.createTeacher({ email, password: hashedPassword, name });
     await ClassroomMemberRepository.insertInClass({classId: 1, customerId: teacherId});
-    return this.generateToken({ id: teacherId, email, name });
+    return this.generateToken({ id: teacherId, email, name, role: "professor" });
   }
 
   async loginTeacher(email: string, password: string): Promise<string> {

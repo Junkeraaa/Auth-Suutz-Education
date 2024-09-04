@@ -1,6 +1,7 @@
 import pool from '../config/database';
 import { Classroom } from '../models/Classroom';
 
+
 class ClassroomRepository {
     async findClassroom (classroomId: number): Promise<Classroom | null> {
 

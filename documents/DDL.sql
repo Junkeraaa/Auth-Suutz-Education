@@ -10,14 +10,16 @@ CREATE TABLE customer (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    name VARCHAR(100) NOT NULL
+    name VARCHAR(100) NOT NULL,
+    role VARCHAR(50) DEFAULT 'aluno'
 );
 
 CREATE TABLE teacher (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    name VARCHAR(100) NOT NULL
+    name VARCHAR(100) NOT NULL,
+    role VARCHAR(50) DEFAULT 'professor'
 );
 
 CREATE TABLE classroom (
