@@ -3,6 +3,7 @@ import CustomerRepository from "../repositories/CustomerRepository";
 import UserRepository from "../repositories/CustomerRepository";
 import ClassroomMemberRepository from '../repositories/ClassroomMemberRepository';
 import { myClassrooms } from "../types/myClassrooms";
+import TeacherRepository from "../repositories/TeacherRepository";
 
 
 class ClassService {
@@ -25,14 +26,23 @@ class ClassService {
         return ClassroomRepository.createClassroom({teacherId, classroomName});
     }
 
-    async listClass(userId: number): Promise<myClassrooms[] | null> {
+    async listClass(userId: number): Promise<myClassrooms[]> {
+        const listClass: myClassrooms[] = [];
         const listClassIds = await ClassroomMemberRepository.listIdClassroomPerStudentOrProfessor(userId);
         if(listClassIds){
             for(const classId of listClassIds){
-                const classInfo = await ClassroomRepository.findClassroom(classId);
+                    const classInfo = await ClassroomRepository.findClassroom(classId.classroomId);
+                    const numberOfMembers = await ClassroomMemberRepository.listMembersPerClasId(classInfo?.id as number);
+                    const professorName = await TeacherRepository.findTeacherById(classInfo?.teacherId as number);
+
+                    const myClassroomCard: myClassrooms = {
+                        membersClassroom
+                    }
+                    
+                
             }
         } 
-        return null
+        return listClass;
          
     }
 

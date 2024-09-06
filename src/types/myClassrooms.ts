@@ -6,3 +6,11 @@ export interface myClassrooms {
     avaibleLessons: number;
     membersClassroom: number;
   }
+
+ export interface classroomId {
+    classroomId: number
+}
+
+export interface countMembersClass {
+  numberOfMembers: number
+}
