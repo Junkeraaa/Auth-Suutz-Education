@@ -11,7 +11,7 @@ CREATE TABLE customer (
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     name VARCHAR(100) NOT NULL,
-    role VARCHAR(50) DEFAULT 'aluno'
+    role VARCHAR(50) DEFAULT 'stundent'
 );
 
 CREATE TABLE teacher (
@@ -35,6 +35,14 @@ CREATE TABLE classroom_member (
     customer_id INT NOT NULL,
     FOREIGN KEY (classroom_id) REFERENCES classroom(id),
     FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+
+CREATE TABLE lesson (
+	id INT auto_increment PRIMARY KEY,
+	title VARCHAR(250),
+	descricao VARCHAR(250),
+	classroom_id INT NOT NULL,
+	FOREIGN KEY (classroom_id) REFERENCES classroom(id)
 );
 
 drop database sivt;

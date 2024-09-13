@@ -3,8 +3,10 @@ import jwt from 'jsonwebtoken';
 import CustomerRepository from '../repositories/CustomerRepository';
 import { jwtSecret, jwtExpiresIn } from '../config/config';
 import TeacherRepository from '../repositories/TeacherRepository';
-import { jwtLoginInterface } from '../types/jwtLoginInterface';
 import ClassroomMemberRepository from '../repositories/ClassroomMemberRepository';
+import { Teacher } from '../models/Teacher';
+import { Customer } from '../models/Customer';
+import { role } from "../types/User";
 
 
 class AuthService {
@@ -16,7 +18,7 @@ class AuthService {
     const hashedPassword = await bcrypt.hash(password, 10);
     const customerId = await CustomerRepository.createCustomer({ email, password: hashedPassword, name });
     await ClassroomMemberRepository.insertInClass({classId: 1, customerId: customerId});
-    return this.generateToken({ id: customerId, email, name, role: "aluno" });
+    return this.generateCustomerToken({ id: customerId, email, name, role: role.STUDENT });
   }
 
   async loginCustomer(email: string, password: string): Promise<string> {
@@ -24,7 +26,7 @@ class AuthService {
     if (!customer || !(await bcrypt.compare(password, customer.password))) {
       throw new Error('Invalid email or password');
     }
-    return this.generateToken({ id: customer.id!, email: customer.email, name: customer.name, role: "aluno" });
+    return this.generateCustomerToken({ id: customer.id!, email: customer.email, name: customer.name, role: customer.role });
   }
 
   async registerTeacher (email: string, password: string, name: string): Promise<string> {
@@ -35,7 +37,7 @@ class AuthService {
     const hashedPassword = await bcrypt.hash(password, 10);
     const  teacherId = await TeacherRepository.createTeacher({ email, password: hashedPassword, name });
     await ClassroomMemberRepository.insertInClass({classId: 1, customerId: teacherId});
-    return this.generateToken({ id: teacherId, email, name, role: "professor" });
+    return this.generateCustomerToken({ id: teacherId, email, name, role: role.PROFESSOR });
   }
 
   async loginTeacher(email: string, password: string): Promise<string> {
@@ -43,10 +45,14 @@ class AuthService {
     if (!teacher || !(await bcrypt.compare(password, teacher.password))) {
       throw new Error('Invalid email or password');
     }
-    return this.generateToken({ id: teacher.id!, email: teacher.email, name: teacher.name, role: "professor" });
+    return this.generateTeacherToken({ id: teacher.id!, email: teacher.email, name: teacher.name, role:  teacher.role });
   }
 
-  private generateToken(teacher: Partial<jwtLoginInterface> ): string {
+  private generateTeacherToken(teacher: Partial<Teacher> ): string {
+    return jwt.sign(teacher, jwtSecret, { expiresIn: jwtExpiresIn });
+  }
+
+  private generateCustomerToken(teacher: Partial<Customer> ): string {
     return jwt.sign(teacher, jwtSecret, { expiresIn: jwtExpiresIn });
   }
 }

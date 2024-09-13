@@ -1,28 +1,30 @@
 import pool from '../config/database';
 import { Classroom } from '../models/Classroom';
-
+import { RowDataPacket, ResultSetHeader } from 'mysql2';
 
 class ClassroomRepository {
-    async findClassroom (classroomId: number): Promise<Classroom | null> {
-
-       const [ rows ] = await pool.query('SELECT * FROM classroom WHERE id = ?', [classroomId]);
-       if((rows as Classroom[]).length) {
-        return (rows as Classroom[])[0];
-            }
-            return null;
-        
+    
+    async findClassroom(classroomId: number): Promise<Classroom | null> {
+        const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM classroom WHERE id = ?', [classroomId]);
+        if (rows.length) {
+            return rows[0] as Classroom;
+        }
+        return null;
     }
 
-    async createClassroom (Classroom: Classroom): Promise<number> { 
-
-        const [ result ] = await pool.query(
+    async createClassroom(classroom: Classroom): Promise<number> {
+        const [result] = await pool.query<ResultSetHeader>(
             'INSERT INTO classroom (teacher_id, classroom_name) VALUES (?, ?)',
-            [Classroom.teacherId, Classroom.classroomName]
+            [classroom.teacherId, classroom.classroomName]
         );
+        return result.insertId;
+    }
 
-        return (result as any ).insertId;
-
+    
+    async getAllClassrooms(): Promise<Classroom[]> {
+        const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM classroom');
+        return rows as Classroom[];
     }
 }
 
-export default new ClassroomRepository(); 
+export default new ClassroomRepository();
