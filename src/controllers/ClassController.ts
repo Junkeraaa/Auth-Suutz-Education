@@ -49,7 +49,7 @@ class ClassController {
 
     async listClassCards(req: Request, res: Response): Promise<void> {
         try {
-            const { user } = req as any;
+            const user = req.User as User;
             const classCards = await classService.listClass(user.id);
             res.status(200).json(classCards.length ? classCards : { message: "No classes found!" });
         } catch (error: any) {

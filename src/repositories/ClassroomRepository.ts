@@ -5,7 +5,7 @@ import { RowDataPacket, ResultSetHeader } from 'mysql2';
 class ClassroomRepository {
     
     async findClassroom(classroomId: number): Promise<Classroom | null> {
-        const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM classroom WHERE id = ?', [classroomId]);
+        const [rows] = await pool.query<RowDataPacket[]>('SELECT id, teacher_id as teacherId, classroom_name as classroomName FROM classroom WHERE id = ?', [classroomId]);
         if (rows.length) {
             return rows[0] as Classroom;
         }
