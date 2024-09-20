@@ -2,9 +2,9 @@ import ClassroomRepository from "../repositories/ClassroomRepository";
 import CustomerRepository from "../repositories/CustomerRepository";
 import ClassroomMemberRepository from "../repositories/ClassroomMemberRepository";
 import TeacherRepository from "../repositories/TeacherRepository";
-import LessonsRepository from "../repositories/LessonsRepository";
+import LessonsRepository from "../repositories/LessonRepository";
 import { myClassrooms, ClassroomInfo, LessonInfo, MemberInfo } from "../types/myClassrooms";
-import { lessons } from "../models/lessons";
+import { Lesson } from "../models/Lesson";
 
 class ClassService {
 
@@ -54,7 +54,7 @@ class ClassService {
         };
     }
 
-    async getAllLessons(classroomId: number): Promise<lessons[]> {
+    async getAllLessons(classroomId: number): Promise<Lesson[]> {
         return LessonsRepository.getAllLessons(classroomId);
     }
 

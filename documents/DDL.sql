@@ -38,11 +38,19 @@ CREATE TABLE classroom_member (
 );
 
 CREATE TABLE lesson (
-	id INT auto_increment PRIMARY KEY,
-	title VARCHAR(250),
-	descricao VARCHAR(250),
-	classroom_id INT NOT NULL,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    classroom_id INT NOT NULL,
 	FOREIGN KEY (classroom_id) REFERENCES classroom(id)
+);
+
+CREATE TABLE lesson_image (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    lesson_id INT NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    FOREIGN KEY (lesson_id) REFERENCES lesson(id) ON DELETE CASCADE
 );
 
 drop database sivt;
