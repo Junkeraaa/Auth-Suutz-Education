@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "416d5645-6a75-4d79-af5b-c6528e741323",
+		"name": "Suutz Investment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35098464"
+	},
+	"item": [
+		{
+			"name": "CadastroCustomer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"luisp@gmail.com,\",\r\n  \"password\": \"123mudar\",\r\n  \"name\": \"amanda vida\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/register/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"register",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CadastroTeacher",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"lucas@professor.com\",\r\n  \"password\": \"123mudar\",\r\n  \"name\": \"lucas professor\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/register/teacher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"register",
+						"teacher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateClass",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJsdWNhc0Bwcm9mZXNzb3IuY29tIiwibmFtZSI6Imx1Y2FzIHByb2Zlc3NvciIsInJvbGUiOiJwcm9mZXNzb3IiLCJpYXQiOjE3MjY4NTQ0NTksImV4cCI6MTcyNjg1ODA1OX0.871DIFdXkzIu6vrlRV3kt4M5xFYMlvL0UiVWdgdTjSw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJsdWNhc0Bwcm9mZXNzb3IuY29tIiwibmFtZSI6Imx1Y2FzIHByb2Zlc3NvciIsInJvbGUiOiJwcm9mZXNzb3IiLCJpYXQiOjE3MjU0MDA1ODYsImV4cCI6MTcyNTQwNDE4Nn0.bDERSC8bKqZKe6p3vDB1gQ2Dp3ekCXTWeCNtEBf2icA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"className\": \"Classe da Suutz\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/class/createClass",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"class",
+						"createClass"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InsertInClassroom",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJsdWlzcEBnbWFpbC5jb20sIiwibmFtZSI6ImFtYW5kYSB2aWRhIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3MjY2Mjk3MzcsImV4cCI6MTcyNjYzMzMzN30.4YcOIjVBOuZfzc4SJczA5HDjNCASdBYIZuFMYRcvPBQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"classroomId\": 2\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/class/insertInClass",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"class",
+						"insertInClass"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginCustomer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"luisp@gmail.com,\",\r\n  \"password\": \"123mudar\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/login/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"login",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginTeacher",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"lucas@professor.com\",\r\n  \"password\": \"123mudar\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/login/teacher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"login",
+						"teacher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListClassCardsPerMember",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJsdWlzcEBnbWFpbC5jb20sIiwibmFtZSI6ImFtYW5kYSB2aWRhIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3MjY4MDE2ODYsImV4cCI6MTcyNjgwNTI4Nn0.6SEfAsmh20yXiSMosP3Uz1R7C8CfKsqLZKce0VDm4us",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/class/listClassCards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"class",
+						"listClassCards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createLesson",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJsdWNhc0Bwcm9mZXNzb3IuY29tIiwibmFtZSI6Imx1Y2FzIHByb2Zlc3NvciIsInJvbGUiOiJwcm9mZXNzb3IiLCJpYXQiOjE3MjY4NTQ0MDIsImV4cCI6MTcyNjg1ODAwMn0.GuG5xEdj0dVRYKHrvfXhriZyj9Kv_qxnMvpzQYRvWsw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <seu-token-aqui>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Exemplo de Lição\",\r\n    \"content\": \"Este é o conteúdo da lição de exemplo.\",\r\n    \"images\": [\r\n        \"https://exemplo.com/imagens/imagem1.jpg\",\r\n        \"https://exemplo.com/imagens/imagem2.jpg\"\r\n    ],\r\n    \"classroomId\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/lesson/createLesson",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"lesson",
+						"createLesson"
+					]
+				},
+				"description": "Generated from cURL: curl --location --request POST 'http://localhost:8080/lessons' \\\r\n--header 'Authorization: Bearer <seu-token-aqui>' \\\r\n--header 'Content-Type: application/json' \\\r\n--data-raw '{\r\n    \"title\": \"Exemplo de Lição\",\r\n    \"content\": \"Este é o conteúdo da lição de exemplo.\",\r\n    \"images\": [\r\n        \"https://exemplo.com/imagens/imagem1.jpg\",\r\n        \"https://exemplo.com/imagens/imagem2.jpg\"\r\n    ]\r\n}'\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "listLessonContent",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJsdWlzcEBnbWFpbC5jb20sIiwibmFtZSI6ImFtYW5kYSB2aWRhIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3Mjc3MzE2NjUsImV4cCI6MTcyNzczNTI2NX0.iGF4hrYiN-0BX8IqollAaYGnsvyt8_yRDd_b88dbp0U",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/lesson/listLessonContent?lessonId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"lesson",
+						"listLessonContent"
+					],
+					"query": [
+						{
+							"key": "lessonId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

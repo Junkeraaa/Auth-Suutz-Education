@@ -6,7 +6,7 @@ import { role, User } from '../types/User';
 class ClassController {
     async createClass(req: Request, res: Response): Promise<void> {
         try {
-            const { user } = req as any;
+            const user = req.User as User;
             if (user.role !== role.PROFESSOR) {
                 res.status(403).json({ message: 'Access denied: only professors can create classes' });
                 return;
