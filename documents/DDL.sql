@@ -1,24 +1,50 @@
-CREATE DATABASE login_cadastro_db;
+select * from customer c;
+select * from classroom cr ;
+select * from classroom_member crm;
+select * from teacher t;
 
-USE login_cadastro_db;
+create database sivt;
+use sivt;
 
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  role ENUM('professor', 'aluno') NOT NULL
+CREATE TABLE customer (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    role VARCHAR(50) DEFAULT 'stundent'
 );
 
-create table class_manager (
-id int primary key auto_increment,
-teacher_id int not null,
-class_name varchar(100) not null
+CREATE TABLE teacher (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    role VARCHAR(50) DEFAULT 'professor'
 );
 
-create table class_members (
-id int primary key auto_increment,
-class_id int not null,
-user_id int not null
+CREATE TABLE classroom (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    teacher_id INT NOT NULL,
+    classroom_name VARCHAR(100) NOT NULL,
+    FOREIGN KEY (teacher_id) REFERENCES teacher(id)
 );
+
+CREATE TABLE classroom_member (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    classroom_id INT NOT NULL,
+    customer_id INT NOT NULL,
+    FOREIGN KEY (classroom_id) REFERENCES classroom(id),
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+
+CREATE TABLE lesson (
+	id INT auto_increment PRIMARY KEY,
+	title VARCHAR(250),
+	descricao VARCHAR(250),
+	classroom_id INT NOT NULL,
+	FOREIGN KEY (classroom_id) REFERENCES classroom(id)
+);
+
+drop database sivt;
 
 

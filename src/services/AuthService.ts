@@ -1,41 +1,59 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { User } from '../models/User';
-import userRepository from '../repositories/UserRepository';
-import ClassManagerRepository from '../repositories/ClassManagerRepository'
-import ClassMembersRepository from '../repositories/ClassMembersRepository';
+import CustomerRepository from '../repositories/CustomerRepository';
 import { jwtSecret, jwtExpiresIn } from '../config/config';
+import TeacherRepository from '../repositories/TeacherRepository';
+import ClassroomMemberRepository from '../repositories/ClassroomMemberRepository';
+import { Teacher } from '../models/Teacher';
+import { Customer } from '../models/Customer';
+import { role } from "../types/User";
+
 
 class AuthService {
-  async register(email: string, password: string, role: 'professor' | 'aluno', classId: number | null | undefined ): Promise<string> {
-    const existingUser = await userRepository.findUserByEmail(email);
-    if (existingUser) {
-      throw new Error('User with this email already exists');
+  async registerCustomer (email: string, password: string, name: string): Promise<string> {
+    const existingCustomer = await CustomerRepository.findCustomerByEmail(email);
+    if (existingCustomer) {
+      throw new Error('Customer with this email already exists');
     }
-    const existingClass = await ClassManagerRepository.findClass(classId);
-        if(!existingClass) {
-            throw new Error('This class does not exist!')
-        }
     const hashedPassword = await bcrypt.hash(password, 10);
-    const userId = await userRepository.createUser({ email, password: hashedPassword, role });
-    if(!classId){
-      classId = 1;
-    }
-    const ClassMemberId = await ClassMembersRepository.insertInClass({classId,  userId});
-    
-    return this.generateToken({ id: userId, email, role });
+    const customerId = await CustomerRepository.createCustomer({ email, password: hashedPassword, name });
+    await ClassroomMemberRepository.insertInClass({classId: 1, customerId: customerId});
+    return this.generateCustomerToken({ id: customerId, email, name, role: role.STUDENT });
   }
 
-  async login(email: string, password: string): Promise<string> {
-    const user = await userRepository.findUserByEmail(email);
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+  async loginCustomer(email: string, password: string): Promise<string> {
+    const customer = await CustomerRepository.findCustomerByEmail(email);
+    if (!customer || !(await bcrypt.compare(password, customer.password))) {
       throw new Error('Invalid email or password');
     }
-    return this.generateToken({ id: user.id!, email: user.email, role: user.role });
+    return this.generateCustomerToken({ id: customer.id!, email: customer.email, name: customer.name, role: customer.role });
   }
 
-  private generateToken(user: Partial<User>): string {
-    return jwt.sign(user, jwtSecret, { expiresIn: jwtExpiresIn });
+  async registerTeacher (email: string, password: string, name: string): Promise<string> {
+    const existingTeacher = await TeacherRepository.findTeacherByEmail(email);
+    if (existingTeacher) {
+      throw new Error('Teacher with this email already exists');
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const  teacherId = await TeacherRepository.createTeacher({ email, password: hashedPassword, name });
+    await ClassroomMemberRepository.insertInClass({classId: 1, customerId: teacherId});
+    return this.generateCustomerToken({ id: teacherId, email, name, role: role.PROFESSOR });
+  }
+
+  async loginTeacher(email: string, password: string): Promise<string> {
+    const teacher = await TeacherRepository.findTeacherByEmail(email);
+    if (!teacher || !(await bcrypt.compare(password, teacher.password))) {
+      throw new Error('Invalid email or password');
+    }
+    return this.generateTeacherToken({ id: teacher.id!, email: teacher.email, name: teacher.name, role:  teacher.role });
+  }
+
+  private generateTeacherToken(teacher: Partial<Teacher> ): string {
+    return jwt.sign(teacher, jwtSecret, { expiresIn: jwtExpiresIn });
+  }
+
+  private generateCustomerToken(teacher: Partial<Customer> ): string {
+    return jwt.sign(teacher, jwtSecret, { expiresIn: jwtExpiresIn });
   }
 }
 
