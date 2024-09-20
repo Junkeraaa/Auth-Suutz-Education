@@ -6,6 +6,6 @@ const router = Router();
 
 router.post('/createClass', authMiddleware, ClassController.createClass);
 router.post('/insertInClass', authMiddleware, ClassController.insertInClass);
-router.post('/listClassCards', authMiddleware, ClassController.listClassCards);
+router.get('/listClassCards', authMiddleware, ClassController.listClassCards);
 
 export default router;
