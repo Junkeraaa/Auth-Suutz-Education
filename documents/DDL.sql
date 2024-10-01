@@ -11,7 +11,7 @@ CREATE TABLE customer (
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     name VARCHAR(100) NOT NULL,
-    role VARCHAR(50) DEFAULT 'stundent'
+    role VARCHAR(50) DEFAULT 'student'
 );
 
 CREATE TABLE teacher (

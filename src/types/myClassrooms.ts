@@ -2,7 +2,7 @@ export interface myClassrooms {
   nameClassroom: string;
   nameProfessor: string;
   membersClassroom: number;
-  avaibleLessons: number;
+  availableLessons: number;
 }
 
 export interface ClassroomInfo {

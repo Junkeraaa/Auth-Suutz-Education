@@ -51,8 +51,8 @@ class AuthService {
     return jwt.sign(teacher, jwtSecret, { expiresIn: jwtExpiresIn });
   }
 
-  private generateCustomerToken(teacher: Partial<Customer> ): string {
-    return jwt.sign(teacher, jwtSecret, { expiresIn: jwtExpiresIn });
+  private generateCustomerToken(customer: Partial<Customer> ): string {
+    return jwt.sign(customer, jwtSecret, { expiresIn: jwtExpiresIn });
   }
 }
 

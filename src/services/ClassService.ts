@@ -18,7 +18,7 @@ class ClassService {
     }
 
     async createClass(teacherId: number, classroomName: string): Promise<number> {
-        const teacher = await CustomerRepository.findCustomerById(teacherId);
+        const teacher = await TeacherRepository.findTeacherById(teacherId);
         if (!teacher) {
             throw new Error('This teacher does not exist!');
         }
@@ -50,7 +50,7 @@ class ClassService {
             nameClassroom: classInfo.classroomName,
             nameProfessor: professorName?.name || 'Unknown',
             membersClassroom: numberOfMembers,
-            avaibleLessons: lessons.length,
+            availableLessons: lessons.length,
         };
     }
 

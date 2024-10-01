@@ -12,18 +12,24 @@ class ClassController {
                 return;
             }
 
+            console.log(user)
+
             const { className } = req.body;
+
+            console.log('className', className)
             const classId = await classService.createClass(user.id, className);
             res.status(201).json({ classId });
         } catch (error: any) {
             res.status(400).json({ message: error.message });
         }
-    }
+    } 
 
     async insertInClass(req: Request, res: Response): Promise<void> {
         try {
             
             const user = req.User as User;
+
+            console.log(user)
 
             
             if (user.role !== role.STUDENT) {
