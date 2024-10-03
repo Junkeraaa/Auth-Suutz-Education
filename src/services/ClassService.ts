@@ -47,6 +47,7 @@ class ClassService {
         const lessons = await LessonsRepository.getAllLessons(classroomId);
 
         return {
+            classroomId,
             nameClassroom: classInfo.classroomName,
             nameProfessor: professorName?.name || 'Unknown',
             membersClassroom: numberOfMembers,
