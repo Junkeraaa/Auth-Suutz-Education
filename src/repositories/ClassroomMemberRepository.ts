@@ -10,9 +10,14 @@ class ClassroomMemberRepository {
         return (result as any).insertId;
     }
 
-    async listIdClassroomPerStudentOrProfessor(userId: number): Promise<classroomId[]> {
+    async listIdClassroomPerStudent(userId: number): Promise<classroomId[]> {
         const [rows] = await pool.query('SELECT classroom_id as classroomId FROM classroom_member WHERE customer_id = ?', [userId]);
         return rows as classroomId[];
+    }
+
+    async listIdClassroomPerProfessor(userId: number): Promise<classroomId[]>{
+        const [rows] = await pool.query('SELECT id as classroomId FROM classroom WHERE teacher_id = ?', [userId]);
+        return rows as classroomId[]
     }
 
     async listMembersPerClassId(classroomId: number): Promise<number> {

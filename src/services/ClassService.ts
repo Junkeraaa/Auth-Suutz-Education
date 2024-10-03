@@ -5,6 +5,7 @@ import LessonsRepository from "../repositories/LessonRepository";
 import { myClassrooms, MemberInfo } from "../types/myClassrooms";
 import { Lesson } from "../models/Lesson";
 import { classroomContent } from "../types/classroomContent";
+import { role } from '../types/User';
 
 class ClassService {
 
@@ -26,10 +27,21 @@ class ClassService {
         return ClassroomRepository.createClassroom({ teacherId, classroomName });
     }
 
-    async listClass(userId: number): Promise<myClassrooms[]> {
+    async listClass(userId: number, userRole: string): Promise<myClassrooms[]> {
         const listClass: myClassrooms[] = [];
-        const listClassIds = await ClassroomMemberRepository.listIdClassroomPerStudentOrProfessor(userId);
 
+        let listClassIds = [];
+
+        console.log("user role payload", userRole)
+        console.log("user role no objeto", role.STUDENT)
+
+        if(userRole == role.STUDENT){
+            listClassIds = await ClassroomMemberRepository.listIdClassroomPerStudent(userId);
+        }
+        else{
+            listClassIds = await ClassroomMemberRepository.listIdClassroomPerProfessor(userId);
+        }
+        
         for (const classId of listClassIds) {
             const classroom = await this.getClassroomInfo(classId.classroomId);
             if (classroom) listClass.push(classroom);

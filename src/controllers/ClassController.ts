@@ -12,11 +12,8 @@ class ClassController {
                 return;
             }
 
-            console.log(user)
-
             const { className } = req.body;
 
-            console.log('className', className)
             const classId = await classService.createClass(user.id, className);
             res.status(201).json({ classId });
         } catch (error: any) {
@@ -53,7 +50,7 @@ class ClassController {
     async listClassCards(req: Request, res: Response): Promise<void> {
         try {
             const user = req.User as User;
-            const classCards = await classService.listClass(user.id);
+            const classCards = await classService.listClass(user.id, user.role);
             res.status(200).json(classCards.length ? classCards : { message: "No classes found!" });
         } catch (error: any) {
             res.status(400).json({ message: error.message });
