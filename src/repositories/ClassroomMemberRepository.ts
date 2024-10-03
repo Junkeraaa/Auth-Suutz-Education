@@ -4,7 +4,9 @@ import type { ClassMember } from '../models/ClassMember';
 
 class ClassroomMemberRepository {
     async insertInClass(ClassMember: ClassMember): Promise<number> {
-        const [result] = await pool.query('INSERT INTO classroom_member (classroom_id, customer_id) VALUES (?, ?)', [ClassMember.classId, ClassMember.customerId]);
+        const [result] = await pool.query(
+            'INSERT INTO classroom_member (classroom_id, customer_id, customer_name) VALUES (?, ?, ?)',
+             [ClassMember.classId, ClassMember.customerId, ClassMember.customerName]);
         return (result as any).insertId;
     }
 
@@ -22,6 +24,16 @@ class ClassroomMemberRepository {
         const [rows] = await pool.query('SELECT customer_id as memberId, customer_name as memberName FROM classroom_member WHERE classroom_id = ?', [classroomId]);
         return rows as MemberInfo[];
     }
+
+    async getCustomerNamesInClass(classroomId: number): Promise<string[]> {
+        const [rows] = await pool.query(
+            'SELECT customer_name as customerName FROM classroom_member WHERE classroom_id = ?',
+            [classroomId]
+        );
+    
+        return (rows as { customerName: string }[]).map(row => row.customerName);
+    }
+    
 }
 
 export default new ClassroomMemberRepository();

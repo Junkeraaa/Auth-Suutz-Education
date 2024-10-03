@@ -7,5 +7,6 @@ const router = Router();
 router.post('/createClass', authMiddleware, ClassController.createClass);
 router.post('/insertInClass', authMiddleware, ClassController.insertInClass);
 router.get('/listClassCards', authMiddleware, ClassController.listClassCards);
+router.get('/listClassInfosToFront', authMiddleware, ClassController.getClassInfosToFront);
 
 export default router;

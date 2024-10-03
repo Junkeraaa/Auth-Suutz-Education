@@ -28,9 +28,6 @@ class ClassController {
         try {
             
             const user = req.User as User;
-
-            console.log(user)
-
             
             if (user.role !== role.STUDENT) {
                 res.status(403).json({ message: 'Access denied: only students can join classes' });
@@ -39,10 +36,10 @@ class ClassController {
 
            
             const { classroomId } = req.body;
-            const customerId = user.id; 
+            const { id, name } = user; 
 
            
-            const classMemberId = await classService.joinInClass(customerId, classroomId);
+            const classMemberId = await classService.joinInClass(id, classroomId, name);
             res.status(201).json({ classMemberId });
         } catch (error: any) {
             if (error.message === 'This class does not exist!') {
@@ -78,6 +75,21 @@ class ClassController {
             const { classroomId } = req.params;
             const students = await classService.getAllStudents(Number(classroomId));
             res.status(200).json(students);
+        } catch (error: any) {
+            res.status(400).json({ message: error.message });
+        }
+    }
+
+    async getClassInfosToFront(req: Request, res: Response): Promise<void> {
+        try {
+            const classroomId = Number(req.query.classroomId);
+
+             if (!classroomId) {
+        res.status(400).json({ message: 'Classroom Id is required!' });
+        return;
+      }
+            const data = await classService.getClassInfosToFront(classroomId);
+            res.status(200).json(data);
         } catch (error: any) {
             res.status(400).json({ message: error.message });
         }
