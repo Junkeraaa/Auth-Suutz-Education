@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"luisp@gmail.com,\",\r\n  \"password\": \"123mudar\",\r\n  \"name\": \"amanda vida\"\r\n}\r\n",
+					"raw": "{\r\n  \"email\": \"VidaDeChefe@gmail.com\",\r\n  \"password\": \"123mudar\",\r\n  \"name\": \"Parangoleide firmao\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -224,7 +224,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJsdWlzcEBnbWFpbC5jb20sIiwibmFtZSI6ImFtYW5kYSB2aWRhIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3MjY4MDE2ODYsImV4cCI6MTcyNjgwNTI4Nn0.6SEfAsmh20yXiSMosP3Uz1R7C8CfKsqLZKce0VDm4us",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJsdWlzcEBnbWFpbC5jb20sIiwibmFtZSI6ImFtYW5kYSB2aWRhIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3Mjc3MzE2NjUsImV4cCI6MTcyNzczNTI2NX0.iGF4hrYiN-0BX8IqollAaYGnsvyt8_yRDd_b88dbp0U",
 							"type": "string"
 						}
 					]
@@ -333,6 +333,43 @@
 					"query": [
 						{
 							"key": "lessonId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listClassInfosToFront",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJsdWlzcEBnbWFpbC5jb20sIiwibmFtZSI6ImFtYW5kYSB2aWRhIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3Mjc5MjM3NDEsImV4cCI6MTcyNzkyNzM0MX0.BcM-361iSLH6NktsnC8_Iw6FSp_5N6AWgSZ7-N3g0N0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/class/listClassInfosToFront?classroomId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"class",
+						"listClassInfosToFront"
+					],
+					"query": [
+						{
+							"key": "classroomId",
 							"value": "1"
 						}
 					]

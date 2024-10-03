@@ -18,7 +18,8 @@ class AuthService {
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const customerId = await CustomerRepository.createCustomer({ email, password: hashedPassword, name });
-    await ClassroomMemberRepository.insertInClass({classId: 1, customerId: customerId});
+    await ClassroomMemberRepository.insertInClass({classId: 1, customerId, customerName: name});
+    
     const token = this.generateCustomerToken({ id: customerId, email, name, role: role.STUDENT });
     return {
       name,

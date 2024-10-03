@@ -1,20 +1,20 @@
 import ClassroomRepository from "../repositories/ClassroomRepository";
-import CustomerRepository from "../repositories/CustomerRepository";
 import ClassroomMemberRepository from "../repositories/ClassroomMemberRepository";
 import TeacherRepository from "../repositories/TeacherRepository";
 import LessonsRepository from "../repositories/LessonRepository";
-import { myClassrooms, ClassroomInfo, LessonInfo, MemberInfo } from "../types/myClassrooms";
+import { myClassrooms, MemberInfo } from "../types/myClassrooms";
 import { Lesson } from "../models/Lesson";
+import { classroomContent } from "../types/classroomContent";
 
 class ClassService {
 
-    async joinInClass(customerId: number, classId: number): Promise<number> {
+    async joinInClass(customerId: number, classId: number, customerName: string): Promise<number> {
         const existingClass = await ClassroomRepository.findClassroom(classId);
         if (!existingClass) {
             throw new Error('This class does not exist!');
         }
 
-        return ClassroomMemberRepository.insertInClass({ classId, customerId });
+        return ClassroomMemberRepository.insertInClass({ classId, customerId, customerName });
     }
 
     async createClass(teacherId: number, classroomName: string): Promise<number> {
@@ -47,6 +47,7 @@ class ClassService {
         const lessons = await LessonsRepository.getAllLessons(classroomId);
 
         return {
+            classroomId,
             nameClassroom: classInfo.classroomName,
             nameProfessor: professorName?.name || 'Unknown',
             membersClassroom: numberOfMembers,
@@ -60,6 +61,27 @@ class ClassService {
 
     async getAllStudents(classroomId: number): Promise<MemberInfo[]> {
         return ClassroomMemberRepository.getStudentsInClass(classroomId);
+    }
+
+    async getClassInfosToFront(classroomId: number): Promise<classroomContent>{
+        const lessons = await LessonsRepository.getAllLessons(classroomId);
+        if(!lessons){
+            throw new Error('No lesson found!');
+        }
+        const classroom = await ClassroomRepository.findClassroom(classroomId);
+        if(!classroom){
+            throw new Error('Error when searching for class');
+        }
+        
+        const classroomMembers = await ClassroomMemberRepository.getCustomerNamesInClass(classroomId);
+        if(!classroomMembers){
+            throw new Error('Failed to fetch room members');
+        }
+        return {
+            classroomName: classroom.classroomName,
+            lessons: lessons,
+            membersName: classroomMembers,
+        }
     }
 }
 

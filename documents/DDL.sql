@@ -33,6 +33,7 @@ CREATE TABLE classroom_member (
     id INT AUTO_INCREMENT PRIMARY KEY,
     classroom_id INT NOT NULL,
     customer_id INT NOT NULL,
+    customer_name VARCHAR(100) NOT null,
     FOREIGN KEY (classroom_id) REFERENCES classroom(id),
     FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
