@@ -5,8 +5,9 @@ class AuthController {
   async registerCustomer(req: Request, res: Response): Promise<void> {
     try {
       const { email, password, name } = req.body;
-      const token = await authService.registerCustomer(email, password, name);
-      res.status(201).json({ token });
+      const data = await authService.registerCustomer(email, password, name);
+      console.log(data, "Customer criado com sucesso!")
+      res.status(201).json({ data });
     } catch (error: any) {
       if (error.message === 'Customer with this email already exists') {
         res.status(409).json({ message: error.message });
@@ -19,8 +20,8 @@ class AuthController {
   async loginCustomer(req: Request, res: Response): Promise<void> {
     try {
       const { email, password } = req.body;
-      const token = await authService.loginCustomer(email, password);
-      res.status(200).json({ token });
+      const data = await authService.loginCustomer(email, password);
+      res.status(200).json({ data });
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }
@@ -29,8 +30,8 @@ class AuthController {
   async registerTeacher(req: Request, res: Response): Promise<void> {
     try {
       const { email, password, name } = req.body;
-      const token = await authService.registerTeacher(email, password, name);
-      res.status(201).json({ token });
+      const data = await authService.registerTeacher(email, password, name);
+      res.status(201).json({ data });
     } catch (error: any) {
       if (error.message === 'Teacher with this email already exists') {
         res.status(409).json({ message: error.message });
@@ -43,8 +44,8 @@ class AuthController {
   async loginTeacher(req: Request, res: Response): Promise<void> {
     try {
       const { email, password } = req.body;
-      const token = await authService.loginTeacher(email, password);
-      res.status(200).json({ token });
+      const data = await authService.loginTeacher(email, password);
+      res.status(200).json({ data });
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }

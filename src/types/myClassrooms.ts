@@ -1,8 +1,9 @@
 export interface myClassrooms {
+  classroomId: number;
   nameClassroom: string;
   nameProfessor: string;
   membersClassroom: number;
-  avaibleLessons: number;
+  availableLessons: number;
 }
 
 export interface ClassroomInfo {

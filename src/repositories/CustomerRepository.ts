@@ -3,7 +3,6 @@ import { Customer } from '../models/Customer';
 
 class CustomerRepository {
   async createCustomer(Customer: Customer): Promise<number> {
-
     const [result] = await pool.query(
       'INSERT INTO customer (email, password, name) VALUES (?, ?, ?)',
       [Customer.email, Customer.password, Customer.name]
