@@ -26,6 +26,7 @@ CREATE TABLE classroom (
     id INT AUTO_INCREMENT PRIMARY KEY,
     teacher_id INT NOT NULL,
     classroom_name VARCHAR(100) NOT NULL,
+    classroom_code VARCHAR(100) NOT NULL,
     FOREIGN KEY (teacher_id) REFERENCES teacher(id)
 );
 

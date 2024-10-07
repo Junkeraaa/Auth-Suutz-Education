@@ -6,16 +6,21 @@ import { myClassrooms, MemberInfo } from "../types/myClassrooms";
 import { Lesson } from "../models/Lesson";
 import { classroomContent } from "../types/classroomContent";
 import { role } from '../types/User';
+import { generateCode } from "../utils/genarateClassroomCode";
 
 class ClassService {
 
-    async joinInClass(customerId: number, classId: number, customerName: string): Promise<number> {
-        const existingClass = await ClassroomRepository.findClassroom(classId);
+    async joinInClass(customerId: number, classroomCode: string, customerName: string): Promise<number> {
+        const existingClass = await ClassroomRepository.findClassroomPerClassroomCode(classroomCode);
         if (!existingClass) {
             throw new Error('This class does not exist!');
         }
 
-        return ClassroomMemberRepository.insertInClass({ classId, customerId, customerName });
+        if (typeof existingClass.id !== 'number') {
+            throw new Error('Invalid class ID!');
+        }
+
+        return ClassroomMemberRepository.insertInClass({ classId: existingClass.id, customerId, customerName });
     }
 
     async createClass(teacherId: number, classroomName: string): Promise<number> {
@@ -24,16 +29,15 @@ class ClassService {
             throw new Error('This teacher does not exist!');
         }
 
-        return ClassroomRepository.createClassroom({ teacherId, classroomName });
+        const classroomCode = generateCode();
+
+        return ClassroomRepository.createClassroom({ teacherId, classroomName, classroomCode });
     }
 
     async listClass(userId: number, userRole: string): Promise<myClassrooms[]> {
         const listClass: myClassrooms[] = [];
 
         let listClassIds = [];
-
-        console.log("user role payload", userRole)
-        console.log("user role no objeto", role.STUDENT)
 
         if(userRole == role.STUDENT){
             listClassIds = await ClassroomMemberRepository.listIdClassroomPerStudent(userId);

@@ -25,18 +25,16 @@ class ClassController {
         try {
             
             const user = req.User as User;
+            const classroomCode = req.query.classroomCode + '';
             
             if (user.role !== role.STUDENT) {
                 res.status(403).json({ message: 'Access denied: only students can join classes' });
                 return;
             }
-
-           
-            const { classroomId } = req.body;
             const { id, name } = user; 
 
            
-            const classMemberId = await classService.joinInClass(id, classroomId, name);
+            const classMemberId = await classService.joinInClass(id, classroomCode, name);
             res.status(201).json({ classMemberId });
         } catch (error: any) {
             if (error.message === 'This class does not exist!') {
