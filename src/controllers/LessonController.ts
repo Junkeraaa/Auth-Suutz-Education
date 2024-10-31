@@ -56,7 +56,7 @@ class LessonController {
 
   async editLesson(req: Request, res: Response): Promise<void>{
     try {
-      const lessonId = Number(req.query.lessonId)
+      const lessonId = Number(req.params.lessonId); // Obtém o lessonId dos parâmetros da rota
       const content = String(req.query.content)
       if(!lessonId) {
         res.status(400).json({ message: 'Lesson ID is required in the query'})
