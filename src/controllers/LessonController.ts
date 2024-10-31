@@ -53,6 +53,32 @@ class LessonController {
       }
     }
   }
+
+  async editLesson(req: Request, res: Response): Promise<void>{
+    try {
+      const lessonId = Number(req.query.lessonId)
+      const content = String(req.query.content)
+      if(!lessonId) {
+        res.status(400).json({ message: 'Lesson ID is required in the query'})
+      }
+
+      const lessonUpdated = await LessonService.updateLessonContent(lessonId, content);
+
+      res.status(200).json(lessonUpdated);
+
+    }
+    catch(error){
+      if (error instanceof Error) {
+        if (error.message === 'Não foi possível alterar a lição') {
+          res.status(404).json({ message: error.message });
+        } else {
+          res.status(500).json({ message: 'Error fetching lesson content', error: error.message });
+        }
+      } else {
+        res.status(500).json({ message: 'Unknown error occurred' });
+      }
+    }
+  }
 }
 
 export default new LessonController();

@@ -23,6 +23,14 @@ class LessonRepository {
         );
         return (result as any).insertId;
       }
+
+      async editLessonContent(lessonId: number, content: string): Promise<boolean> {
+        const [result] = await pool.query(
+            'UPDATE lesson SET content = ? WHERE id = ?',
+            [content, lessonId]
+        );
+        return (result as any).affectedRows > 0;
+    }    
 }
 
 export default new LessonRepository();

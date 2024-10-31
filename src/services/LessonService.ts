@@ -14,22 +14,29 @@ class LessonService {
     }
   }
 
-    async getLessonWhithId(lessonId: number): Promise<lessonContent> {
-      const lessonImages = await LessonImageRepository.getLessonImagesById(lessonId);
-      const imageArray: string[] = lessonImages.map(objeto => objeto.imageUrl);
-      const lesson = await LessonRepository.getLessonById(lessonId);
+  async getLessonWhithId(lessonId: number): Promise<lessonContent> {
+    const lessonImages = await LessonImageRepository.getLessonImagesById(lessonId);
+    const imageArray: string[] = lessonImages.map(objeto => objeto.imageUrl);
+    const lesson = await LessonRepository.getLessonById(lessonId);
 
-      if(!lesson){
-        throw new Error("lesson not found");
-      }
-     
-      return {
-        title: lesson?.title,
-        content: lesson?.content,
-        imagesUrl: imageArray,
-      }
-
+    if(!lesson){
+      throw new Error("lesson not found");
     }
+    
+    return {
+      title: lesson?.title,
+      content: lesson?.content,
+      imagesUrl: imageArray,
+    }
+
+  }
+
+  async updateLessonContent(lessonId: number, content: string): Promise<void>{
+    const lessonUpdated = await LessonRepository.editLessonContent(lessonId, content);
+    if(lessonUpdated == false){
+      throw new Error("Não foi possível alterar a lição")
+    }
+  }
 }
 
 export default new LessonService();
