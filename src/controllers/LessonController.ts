@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import LessonService from '../services/LessonService';
+import ImageService from '../services/imageService';
 import { Lesson } from '../models/Lesson';
 import { role, User } from '../types/User';
 
@@ -57,7 +58,17 @@ class LessonController {
   async editLesson(req: Request, res: Response): Promise<void>{
     try {
       const lessonId = Number(req.params.lessonId); // Obtém o lessonId dos parâmetros da rota
-      const content = String(req.query.content)
+      const content = String(req.body.content)
+
+      let imageUrls: string[] = [];
+      if (req.body.images && Array.isArray(req.body.images) && req.body.images.length > 0) {
+        // Faz o upload de cada imagem e armazena os URLs retornados
+        imageUrls = await Promise.all(req.body.images.map((imageBase64: string) => 
+          ImageService.uploadImage(imageBase64, lessonId)
+      ));
+    }
+
+
       if(!lessonId) {
         res.status(400).json({ message: 'Lesson ID is required in the query'})
       }
