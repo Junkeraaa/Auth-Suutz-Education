@@ -7,6 +7,7 @@ import { Lesson } from "../models/Lesson";
 import { classroomContent } from "../types/classroomContent";
 import { role } from '../types/User';
 import { generateCode } from "../utils/genarateClassroomCode";
+import { userInfo } from "os";
 
 class ClassService {
 
@@ -25,11 +26,14 @@ class ClassService {
 
     async createClass(teacherId: number, classroomName: string): Promise<number> {
         const teacher = await TeacherRepository.findTeacherById(teacherId);
+
         if (!teacher) {
             throw new Error('This teacher does not exist!');
         }
 
+
         const classroomCode = generateCode();
+
 
         return ClassroomRepository.createClassroom({ teacherId, classroomName, classroomCode });
     }

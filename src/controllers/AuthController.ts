@@ -6,7 +6,6 @@ class AuthController {
     try {
       const { email, password, name } = req.body;
       const data = await authService.registerCustomer(email, password, name);
-      console.log(data, "Customer criado com sucesso!")
       res.status(201).json({ data });
     } catch (error: any) {
       if (error.message === 'Customer with this email already exists') {

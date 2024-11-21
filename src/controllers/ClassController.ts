@@ -14,7 +14,9 @@ class ClassController {
 
             const { className } = req.body;
 
+
             const classId = await classService.createClass(user.id, className);
+
             res.status(201).json({ classId });
         } catch (error: any) {
             res.status(400).json({ message: error.message });
@@ -25,7 +27,8 @@ class ClassController {
         try {
             
             const user = req.User as User;
-            const classroomCode = req.query.classroomCode + '';
+            const {classroomCode} = req.body;
+
             
             if (user.role !== role.STUDENT) {
                 res.status(403).json({ message: 'Access denied: only students can join classes' });
