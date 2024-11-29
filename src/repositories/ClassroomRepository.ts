@@ -20,12 +20,13 @@ class ClassroomRepository {
         return null;
     }
 
-    async createClassroom(classroom: Classroom): Promise<number> {
+    async createClassroom(classroom: Classroom): Promise<Classroom> {
         const [result] = await pool.query<ResultSetHeader>(
             'INSERT INTO classroom (teacher_id, classroom_name, classroom_code) VALUES (?, ?, ?)',
             [classroom.teacherId, classroom.classroomName, classroom.classroomCode]
         );
-        return result.insertId;
+        classroom.id = result.insertId;
+        return classroom;
     }
 
     

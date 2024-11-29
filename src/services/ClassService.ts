@@ -7,6 +7,7 @@ import { Lesson } from "../models/Lesson";
 import { classroomContent } from "../types/classroomContent";
 import { role } from '../types/User';
 import { generateCode } from "../utils/genarateClassroomCode";
+import { Classroom } from "../models/Classroom";
 
 class ClassService {
 
@@ -23,7 +24,7 @@ class ClassService {
         return ClassroomMemberRepository.insertInClass({ classId: existingClass.id, customerId, customerName });
     }
 
-    async createClass(teacherId: number, classroomName: string): Promise<number> {
+    async createClass(teacherId: number, classroomName: string): Promise<Classroom> {
         const teacher = await TeacherRepository.findTeacherById(teacherId);
         if (!teacher) {
             throw new Error('This teacher does not exist!');
